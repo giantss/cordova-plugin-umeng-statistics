@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class UMPlugin extends CordovaPlugin {
     private Context mContext = null;
-    private final String UM_APPKEY = "57e0fe4ce0f55a029b003357";
+    private final String UM_APPKEY = "57e237d5e0f55a061900297d";
     /**
      * 可以设置是否为游戏，如果是游戏会进行初始化
      */

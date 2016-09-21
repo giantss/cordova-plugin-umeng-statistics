@@ -8,7 +8,7 @@
 #import "UMPlugin.h"
 #import <UMMobClick/MobClick.h>
 #import <UMMobClick/MobClickGameAnalytics.h>
-#define UMAppKey @"57e0fe0467e58e2bed000c6c"
+#define UMAppKey @"57e23811e0f55a6e3d002bb4"
 
 
 @interface UMPlugin ()
