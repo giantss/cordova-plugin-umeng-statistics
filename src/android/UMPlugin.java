@@ -1,10 +1,12 @@
 package com.umeng.plugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import android.content.Context;
+import android.util.Log;
+
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.analytics.MobclickAgent.EScenarioType;
+import com.umeng.analytics.MobclickAgent.UMAnalyticsConfig;
+import com.umeng.analytics.game.UMGameAgent;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -14,16 +16,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.analytics.MobclickAgent.EScenarioType;
-import com.umeng.analytics.MobclickAgent.UMAnalyticsConfig;
-import com.umeng.analytics.game.UMGameAgent;
-
-import android.content.Context;
-import android.util.Log;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class UMPlugin extends CordovaPlugin {
     private Context mContext = null;
+    private final String UM_APPKEY = "57e0fe4ce0f55a029b003357";
     /**
      * 可以设置是否为游戏，如果是游戏会进行初始化
      */
@@ -63,9 +64,9 @@ public class UMPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.d("UMPlugin", "execute action:" + action);
         if (action.equals("init")) {
-            String appKey = args.getString(0);
-            String channelId = args.getString(1);
-            MobclickAgent.startWithConfigure(new UMAnalyticsConfig(mContext, appKey, channelId));
+           // String appKey = args.getString(0);
+            String channelId = args.getString(0);
+            MobclickAgent.startWithConfigure(new UMAnalyticsConfig(mContext, this.UM_APPKEY, channelId));
             MobclickAgent.setScenarioType(mContext, EScenarioType.E_UM_NORMAL);
             MobclickAgent.onResume(mContext);
             return true;

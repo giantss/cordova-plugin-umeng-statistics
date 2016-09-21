@@ -1,16 +1,19 @@
 /*  
     Javascript interface of Cordova plugin for Umeng Analytics SDK 
 */
-               
-    var MobclickAgent = {
+var exec = require('cordova/exec'),
+    cordova = require('cordova');
 
+
+
+module.exports = {
     /**
      * 初始化
      * @param appKey appKey
      * @param channelId 渠道号
      */
-	init:function(appKey,channelId) {
-        cordova.exec(null, null, "Umeng", "init", [appKey, channelId]);
+    init:function(appKey,channelId) {
+        exec(null, null, "Umeng", "init", [appKey, channelId]);
     },
     /**
      * 结构化事件
@@ -22,20 +25,20 @@
      * @param eventLabel
      *            NSString类型.事件标签，事件的一个属性说明
      */
-	onCCEvent:function(evenArray, evenValue, eventLabel) {
-		cordova.exec(null, null, "Umeng","onCCEvent", [ evenArray, evenValue, eventLabel ]);
-		
-	},
+    onCCEvent:function(evenArray, evenValue, eventLabel) {
+        exec(null, null, "Umeng","onCCEvent", [ evenArray, evenValue, eventLabel ]);
+
+    },
     /**
      * 自定义事件数量统计
      *
      * @param eventId
      *            NSString类型.事件ID，注意需要先在友盟网站注册此ID
      */
-	onEvent : function(eventId) {
-		cordova.exec(null, null, "Umeng","onEvent", [ eventId ]);
-		
-	},
+    onEvent : function(eventId) {
+        exec(null, null, "Umeng","onEvent", [ eventId ]);
+
+    },
     /**
      * 自定义事件数量统计
      *
@@ -44,10 +47,10 @@
      * @param eventLabel
      *            NSString类型.事件标签，事件的一个属性说明
      */
-	onEventWithLabel : function(eventId, eventLabel) {
-		cordova.exec(null, null, "Umeng","onEventWithLabel", [ eventId, eventLabel ]);
-		
-	},
+    onEventWithLabel : function(eventId, eventLabel) {
+        exec(null, null, "Umeng","onEventWithLabel", [ eventId, eventLabel ]);
+
+    },
     /**
      * 自定义事件数量统计
      *
@@ -56,10 +59,10 @@
      * @param eventData
      *            NSDictionary类型.当前事件的属性集合，最多支持10个K-V值
      */
-	onEventWithParameters : function(eventId, eventData) {
-		cordova.exec(null, null, "Umeng","onEventWithParameters", [ eventId, eventData ]);
-		
-	},
+    onEventWithParameters : function(eventId, eventData) {
+        exec(null, null, "Umeng","onEventWithParameters", [ eventId, eventData ]);
+
+    },
     /**
      * 自定义事件数值型统计
      *
@@ -71,44 +74,44 @@
      *            int 类型.事件持续时长，单位毫秒，您需要手动计算并传入时长，作为事件的时长参数
      *
      */
-	onEventWithCounter : function(eventId, eventData, eventNum) {
-		cordova.exec(null, null, "Umeng","onEventWithCounter", [ eventId, eventData, eventNum ]);
-		
-	},
+    onEventWithCounter : function(eventId, eventData, eventNum) {
+        exec(null, null, "Umeng","onEventWithCounter", [ eventId, eventData, eventNum ]);
+
+    },
     /**
      * 页面统计开始时调用
      *
      * @param pageName
      *            NSString类型.页面名称
      */
-	onPageBegin : function(pageName) {
-		cordova.exec(null, null, "Umeng","onPageBegin", [ pageName ]);
-		
-	},
+    onPageBegin : function(pageName) {
+        exec(null, null, "Umeng","onPageBegin", [ pageName ]);
+
+    },
     /**
      * 页面统计结束时调用
      *
      * @param pageName
      *            NSString类型.页面名称
      */
-	onPageEnd : function(pageName) {
-		cordova.exec(null, null, "Umeng","onPageEnd", [ pageName ]);
+    onPageEnd : function(pageName) {
+        exec(null, null, "Umeng","onPageEnd", [ pageName ]);
 
-	},
+    },
     /**
      * 获取IOS UUID
      */
-	getDeviceId:function(callBack) {
-        cordova.exec(callBack, null, "Umeng", "getDeviceId", []);
-               
+    getDeviceId:function(callBack) {
+        exec(callBack, null, "Umeng", "getDeviceId", []);
+
     },
     /**
      * 在控制台打印log
      * @param enabled
      *           Bool类型
      */
-	setLogEnabled:function(enabled) {
-        cordova.exec(null, null, "Umeng", "setLogEnabled", [enabled]);
+    setLogEnabled:function(enabled) {
+        exec(null, null, "Umeng", "setLogEnabled", [enabled]);
     },
     /**
      * 统计帐号登录接口 *
@@ -117,7 +120,7 @@
      *            用户账号ID,长度小于64字节
      */
     profileSignInWithPUID:function(UID) {
-        cordova.exec(null, null, "Umeng", "profileSignInWithPUID", [UID]);
+        exec(null, null, "Umeng", "profileSignInWithPUID", [UID]);
     },
     /**
      * 统计帐号登录接口 *
@@ -129,14 +132,14 @@
      *            用户账号ID,长度小于64字节
      */
     profileSignInWithPUIDWithProvider:function(provider, UID) {
-        cordova.exec(null, null, "Umeng", "profileSignInWithPUIDWithProvider", [ provider, UID ]);
+        exec(null, null, "Umeng", "profileSignInWithPUIDWithProvider", [ provider, UID ]);
 
     },
     /**
      * 帐号统计退出接口
      */
     profileSignOff:function(){
-        cordova.exec(null, null, "Umeng", "profileSignOff", []);
+        exec(null, null, "Umeng", "profileSignOff", []);
 
     },
     /**
@@ -146,7 +149,7 @@
      *            int类型.等级
      */
     setUserLevelId:function(level) {
-        cordova.exec(null, null, "Umeng", "setUserLevelId", [level]);
+        exec(null, null, "Umeng", "setUserLevelId", [level]);
 
     },
     /**
@@ -156,7 +159,7 @@
      *            NSString类型.
      */
     startLevel:function(level) {
-        cordova.exec(null, null, "Umeng", "startLevel", [level]);
+        exec(null, null, "Umeng", "startLevel", [level]);
 
     },
     /**
@@ -166,8 +169,8 @@
      *            NSString类型.
      */
     finishLevel:function(level) {
-        cordova.exec(null, null, "Umeng", "finishLevel", [level]);
-        
+        exec(null, null, "Umeng", "finishLevel", [level]);
+
     },
     /**
      * 游戏中在某一关卡失败的时候调用此方法
@@ -177,7 +180,7 @@
      */
 
     failLevel:function(level) {
-        cordova.exec(null, null, "Umeng", "failLevel", [level]);
+        exec(null, null, "Umeng", "failLevel", [level]);
 
     },
     /**
@@ -198,7 +201,7 @@
      */
 
     exchange:function(currencyAmount,currencyType,virtualAmount,channel,orderId) {
-        cordova.exec(null, null, "Umeng", "exchange", [currencyAmount,currencyType,virtualAmount,channel,orderId]);
+        exec(null, null, "Umeng", "exchange", [currencyAmount,currencyType,virtualAmount,channel,orderId]);
 
     },
     /**
@@ -213,7 +216,7 @@
      */
 
     pay:function(money, coin, source) {
-        cordova.exec(null, null, "Umeng", "pay", [ money, coin, source ]);
+        exec(null, null, "Umeng", "pay", [ money, coin, source ]);
 
     },
     /**
@@ -231,7 +234,7 @@
      *            int类型.本次消费的途径，网银支付宝等
      */
     payWithItem:function(money, item, number, price, source) {
-        cordova.exec(null, null, "Umeng", "payWithItem", [ money, item, number, price, source ]);
+        exec(null, null, "Umeng", "payWithItem", [ money, item, number, price, source ]);
 
     },
     /**
@@ -246,7 +249,7 @@
      */
 
     buy : function(item, number, price) {
-        cordova.exec(null, null, "Umeng", "buy", [ item, number, price ]);
+        exec(null, null, "Umeng", "buy", [ item, number, price ]);
 
     },
     /**
@@ -260,7 +263,7 @@
      *            double类型.等值虚拟币
      */
     use : function(item, number, price) {
-        cordova.exec(null, null, "Umeng", "use", [ item, number, price ]);
+        exec(null, null, "Umeng", "use", [ item, number, price ]);
 
     },
     /**
@@ -273,7 +276,7 @@
      */
 
     bonus : function(coin, source) {
-        cordova.exec(null, null, "Umeng", "bonus", [ coin, source ]);
+        exec(null, null, "Umeng", "bonus", [ coin, source ]);
 
     },
     /**
@@ -290,9 +293,7 @@
      */
 
     bonusWithItem : function(item, number, price, source) {
-        cordova.exec(null, null, "Umeng", "bonusWithItem", [ item, number, price, source ]);
+        exec(null, null, "Umeng", "bonusWithItem", [ item, number, price, source ]);
 
     }
-       };
-             
-               module.exports =MobclickAgent;
+};

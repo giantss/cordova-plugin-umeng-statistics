@@ -7,7 +7,7 @@
     <name>Umeng</name>
     
     <js-module src="www/Umeng.js" name="Umeng">
-        <clobbers target="MobclickAgent" />
+        <clobbers target="Umeng" />
     </js-module>
     <!-- android -->
     <platform name="android">

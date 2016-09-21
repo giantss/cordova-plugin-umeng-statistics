@@ -8,6 +8,8 @@
 #import "UMPlugin.h"
 #import <UMMobClick/MobClick.h>
 #import <UMMobClick/MobClickGameAnalytics.h>
+#define UMAppKey @"57e0fe0467e58e2bed000c6c"
+
 
 @interface UMPlugin ()
 
@@ -30,15 +32,26 @@
 
 
 - (void)init:(CDVInvokedUrlCommand*)command {
-    NSString *appKey = [command.arguments objectAtIndex:0];
-    if (appKey == nil || [appKey isKindOfClass:[NSNull class]]) {
-        return;
+    
+    Class cls = NSClassFromString(@"UMANUtil");
+    SEL deviceIDSelector = @selector(openUDIDString);
+    NSString *deviceID = nil;
+    if(cls && [cls respondsToSelector:deviceIDSelector]){
+        deviceID = [cls performSelector:deviceIDSelector];
     }
-    NSString *channelId = [command.arguments objectAtIndex:1];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:@{@"oid" : deviceID}
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:nil];
+    
+    NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    
+    
+    
+    NSString *channelId = [command.arguments objectAtIndex:0];
     if ([channelId isKindOfClass:[NSNull class]]) {
         channelId = nil;
     }
-    UMConfigInstance.appKey = appKey;
+    UMConfigInstance.appKey = UMAppKey;
         
     UMConfigInstance.channelId=channelId;
     [MobClick startWithConfigure:UMConfigInstance];

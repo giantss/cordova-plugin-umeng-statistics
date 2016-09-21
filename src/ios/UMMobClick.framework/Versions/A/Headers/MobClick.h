@@ -16,6 +16,7 @@ typedef enum {
     REALTIME = 0,       //实时发送              (只在“集成测试”设备的DEBUG模式下有效)
     BATCH = 1,          //启动发送
     SEND_INTERVAL = 6,  //最小间隔发送           ([90-86400]s, default 90s)
+    SMART_POLICY = 8,
 } ReportPolicy;
 
 /**
@@ -105,12 +106,6 @@ typedef NS_ENUM (NSUInteger, eScenarioType)
  @return void.
 */
 + (void)setLogSendInterval:(double)second;
-
-/** 设置日志延迟发送
- @param second 设置一个[0, second]范围的延迟发送秒数，最大值1800s.
- @return void
- */
-+ (void)setLatency:(int)second;
 
 
 #pragma mark event logs
@@ -287,4 +282,9 @@ typedef NS_ENUM (NSUInteger, eScenarioType)
  */
 + (void)startSession:(NSNotification *)notification;
 
+/** 设置日志延迟发送
+ @param second 设置一个[0, second]范围的延迟发送秒数，最大值1800s.
+ @return void
+ */
++ (void)setLatency:(int)second;
 @end
