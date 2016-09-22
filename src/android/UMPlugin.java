@@ -24,7 +24,6 @@ import java.util.Map;
 
 public class UMPlugin extends CordovaPlugin {
     private Context mContext = null;
-    private final String UM_APPKEY = "57e237d5e0f55a061900297d";
     /**
      * 可以设置是否为游戏，如果是游戏会进行初始化
      */
@@ -64,9 +63,9 @@ public class UMPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.d("UMPlugin", "execute action:" + action);
         if (action.equals("init")) {
-           // String appKey = args.getString(0);
-            String channelId = args.getString(0);
-            MobclickAgent.startWithConfigure(new UMAnalyticsConfig(mContext, this.UM_APPKEY, channelId));
+            String appKey = args.getString(0);
+            String channelId = args.getString(1);
+            MobclickAgent.startWithConfigure(new UMAnalyticsConfig(mContext, appKey, channelId));
             MobclickAgent.setScenarioType(mContext, EScenarioType.E_UM_NORMAL);
             MobclickAgent.onResume(mContext);
             return true;
